@@ -100,7 +100,7 @@ jobs:
           name: List and Push Tags
           command: |
             apk add util-linux > /dev/null 2>&1
-            git tag -l --format="%(refname) %% %(subject) %(taggerdate)" | column -t -s%
+            git tag -l --format="%(refname) %% %(subject) %% %(taggerdate)" | column -t -s%
 workflows:
   version: 2
   test-and-sync:
