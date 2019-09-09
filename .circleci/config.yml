@@ -124,9 +124,9 @@ workflows:
               only:
                 - master
       - autotagger:
-          # requires:
-          #   - e2e-tests
-          #   - sync
+          requires:
+            - e2e-tests
+            - sync
           filters:
             branches:
               only:
