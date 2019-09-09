@@ -10,6 +10,8 @@ references:
         pip install awscli
         echo 'Install needed packages'
         apk --update add bash jq
+        git config --global user.email "circleci-noreply@fairwinds.com"
+        git config --global user.name "CircleCI Pipeline"
 
 jobs:
   lint-scripts:
