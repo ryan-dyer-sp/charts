@@ -99,8 +99,8 @@ jobs:
       - run:
           name: List and Push Tags
           command: |
-            git tag -l -n2
-            echo git push --tags
+            git tag -l -n3 | cat
+            echo "git push --tags"
 workflows:
   version: 2
   test-and-sync:
