@@ -99,8 +99,7 @@ jobs:
       - run:
           name: List and Push Tags
           command: |
-            git tag -l -n3 | cat
-            echo "git push --tags"
+            git tag -l --format="%(refname) %% %(subject) %% %(*authorname) %(*authoremail)" | column -t -s%
 workflows:
   version: 2
   test-and-sync:
