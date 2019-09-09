@@ -73,7 +73,7 @@ jobs:
           command: scripts/repo-sync-fw.sh
   autotagger:
     docker:
-      - image: alpine
+      - image: quay.io/helmpack/chart-testing:v2.2.0
     steps:
       - run:
           name: Setup yq
