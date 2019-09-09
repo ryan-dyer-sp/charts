@@ -71,6 +71,34 @@ jobs:
       - run:
           name: sync-fw
           command: scripts/repo-sync-fw.sh
+  autotagger:
+    docker:
+      - image: alpine
+    steps:
+      - run:
+          name: Setup yq
+          command: |
+            wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq
+            chmod 0755 /usr/local/bin/yq
+      - checkout
+      - *setup_environment
+      - run:
+          name: Tag Charts which don't have tags
+          command: >
+            find . -iname Chart.yaml |
+            xargs -I {} yq read {} -j |
+            jq '.name+"-"+.version' -r |
+            xargs -n 1 -I {} bash -c '
+            if git tag | grep {} > /dev/null 2>&1; then
+            echo already exists;
+            else
+            git tag {} -am Chart\ version\ {} ;
+            fi'
+      - run:
+          name: List and Push Tags
+          command: |
+            git tag -l -n2
+            echo git push --tags
 workflows:
   version: 2
   test-and-sync:
@@ -93,3 +121,11 @@ workflows:
             branches:
               only:
                 - master
+      - autotagger:
+          requires:
+            - e2e-tests
+            - sync
+          filters:
+            branches:
+              only:
+                - autotagging-charts
