@@ -1,5 +1,9 @@
-# Astro
-Astro was designed to simplify datadog monitor administration. This is an operator that emits datadog monitors based on kubernetes state. The operator responds to changes of resources in your kubernetes cluster and will manage datadog monitors based on the configured state.
+<div align="center">
+  <img src="https://github.com/FairwindsOps/astro/blob/master/img/logo.svg" height="120" alt="Astro" />
+  <br><br>
+</div>
+
+Astro is designed to simplify datadog monitor administration. This is an operator that emits datadog monitors based on kubernetes state. The operator responds to changes of resources in your kubernetes cluster and will manage datadog monitors based on the configured state.
 
 More information about astro is available on [GitHub](https://github.com/FairwindsOps/astro).
 
